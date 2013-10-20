@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="Debug" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask TaskName="ModifyVersion" AssemblyFile="MSBuild.VersionModifierTask.dll" />
+  <Target Name="Debug">
+    <ModifyVersion AssemblyInfoPath="location_of_assemblyinfo.cs" AssemblyVersionPattern="[1].[6].[#].[#]" />
+  </Target>
+</Project>
