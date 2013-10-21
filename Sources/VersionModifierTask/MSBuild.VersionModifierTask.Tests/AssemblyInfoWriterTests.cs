@@ -53,6 +53,29 @@ namespace MSBuild.VersionModifierTask.Tests
         }
 
         [Test]
+        public void When_modifying_the_assembly_informational_version_it_should_modify_it_and_save_it()
+        {
+            // ----------------------------------------------------------------
+            // ARRANGE
+            //-----------------------------------------------------------------
+            string assemblyInfoFile = AppDomain.CurrentDomain.BaseDirectory + "\\Resources\\AssemblyInfo_1.txt";
+            var parser = new AssemblyInfoWriter(assemblyInfoFile);
+
+            // ----------------------------------------------------------------
+            // ACT
+            //-----------------------------------------------------------------
+            parser.ModifyAssemblyInformationalVersion("2.2.2.2");
+
+            // ----------------------------------------------------------------
+            // ASSERT
+            //-----------------------------------------------------------------
+            bool parserReplacedValue = FindInFile(AssemblyInfoContext.AssemblyInformationalVersionBeginText + "2.2.2.2" + 
+                AssemblyInfoContext.LastPartOfLine, assemblyInfoFile);
+
+            Assert.IsTrue(parserReplacedValue);
+        }
+
+        [Test]
         public void When_the_file_is_set_to_readonly_it_should_still_modify_it()
         {
             // ----------------------------------------------------------------

@@ -19,12 +19,14 @@
 	</Target>
 	
 	<Target Name="Publish" DependsOnTargets="Clean">
-		<SvnInfo LocalPath="$(MSBuildProjectDirectory)" ToolPath="c:\dev\CruiseControl.NET\Tools\SubVersion\bin\" >
-			<Output TaskParameter="LastChangedRevision" PropertyName="LastChangedRevision" />
-		</SvnInfo>
+		<GitVersion LocalPath="$(MSBuildProjectDirectory)" >
+			<Output TaskParameter="CommitHash" PropertyName="LastChangedRevision" />
+		</GitVersion>
 		
 		<ModifyVersion AssemblyInfoPath="MSBuild.VersionModifierTask\properties\assemblyinfo.cs" 
-						AssemblyVersionPattern="[-].[-].[$(LastChangedRevision)]" />
+						AssemblyVersionPattern="[-].[-].[-]"
+						AssemblyFileVersionPattern="[-].[-].[-]"
+						AssemblyInformationalVersion="[-].[-].[$(LastChangedRevision))]" />
 		
 		<MSBuild 	Projects="MSBuild.VersionModifierTask.sln"
 					Targets="Rebuild"           

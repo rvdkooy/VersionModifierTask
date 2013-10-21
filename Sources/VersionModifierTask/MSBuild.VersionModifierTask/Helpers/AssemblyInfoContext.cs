@@ -7,6 +7,7 @@ namespace MSBuild.VersionModifierTask.Helpers
     {
         public const string InfoVersionBeginText = "[assembly: AssemblyVersion(\"";
         public const string FileVersionBeginText = "[assembly: AssemblyFileVersion(\"";
+        public const string AssemblyInformationalVersionBeginText = "[assembly: AssemblyInformationalVersion(\"";
         public const string LastPartOfLine = "\")]";
 
         protected string AssemblyInfoFile;

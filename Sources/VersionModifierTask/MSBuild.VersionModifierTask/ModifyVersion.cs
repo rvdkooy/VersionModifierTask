@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using MSBuild.VersionModifierTask.Helpers;
 using Microsoft.Build.Framework;
 
@@ -26,6 +25,11 @@ namespace MSBuild.VersionModifierTask
             if (!string.IsNullOrEmpty(AssemblyFileVersionPattern))
             {
                 ModifyAssemblyFileVersion(writer, reader);
+            }
+
+            if (!string.IsNullOrEmpty(AssemblyInformationalVersion))
+            {
+                ModifyAssemblyInformationalVersion(writer, reader);
             }
             
             return true;
@@ -68,6 +72,23 @@ namespace MSBuild.VersionModifierTask
             }
         }
 
+        private void ModifyAssemblyInformationalVersion(AssemblyInfoWriter writer, AssemblyInfoReader reader)
+        {
+            Log.LogMessage(MessageImportance.Normal,
+                           string.Format("Modifying AssemblyInformationalVersion with pattern: {0}", AssemblyInformationalVersion));
+
+            try
+            {
+                string newValue = new PatternBasedParser().Replace(reader.GetAssemblyFileVersion(), AssemblyInformationalVersion);
+
+                writer.ModifyAssemblyInformationalVersion(newValue);
+            }
+            catch (ApplicationException exception)
+            {
+                Log.LogErrorFromException(exception);
+            }
+        }
+
         /// <summary>
         /// Gets or sets the location of the AssemblyInfo file 
         /// </summary>
@@ -76,14 +97,20 @@ namespace MSBuild.VersionModifierTask
 
         /// <summary>
         /// Gets or sets the Assembly Version Pattern. 
-        /// For more information about the pattern check the documentation on http://versionmodifiertask.codeplex.com 
+        /// For more information about the pattern check the documentation on https://github.com/rvdkooy/VersionModifierTask 
         /// </summary>
         public string AssemblyVersionPattern { get; set; }
 
         /// <summary>
         /// Gets or sets the Assembly File Version Pattern. 
-        /// For more information about the pattern check the documentation on http://versionmodifiertask.codeplex.com 
+        /// For more information about the pattern check the documentation on https://github.com/rvdkooy/VersionModifierTask 
         /// </summary>
         public string AssemblyFileVersionPattern { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Assembly Informational Version Pattern. 
+        /// For more information about the pattern check the documentation on https://github.com/rvdkooy/VersionModifierTask 
+        /// </summary>
+        public string AssemblyInformationalVersion { get; set; }
     }
 }

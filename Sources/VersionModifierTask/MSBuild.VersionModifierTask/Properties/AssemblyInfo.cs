@@ -6,4 +6,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("MSBuild.VersionModifierTask")]
 [assembly: ComVisible(false)]
 [assembly: Guid("bf64b590-d578-4af0-aafb-683d2b026ec8")]
-[assembly: AssemblyVersion("1.0.5843")]
+[assembly: AssemblyVersion("1.1.0")]
+[assembly: AssemblyFileVersion("1.1.0")]
+[assembly: AssemblyInformationalVersion("1.1.0")]

@@ -30,6 +30,14 @@ namespace MSBuild.VersionModifierTask.Helpers
         {
             ReplaceTextWith(FileVersionBeginText, newVersion);
         }
+        
+        /// <summary>
+        /// Writes the new Assembly Informational Version to the AssemblyInfo file.
+        /// </summary>
+        public void ModifyAssemblyInformationalVersion(string newVersion)
+        {
+            ReplaceTextWith(AssemblyInformationalVersionBeginText, newVersion);
+        }
 
         private void ClearReadOnlyAttribute()
         {
