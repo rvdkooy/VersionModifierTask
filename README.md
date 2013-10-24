@@ -52,6 +52,10 @@ the following properties can be set on the task:
     <td>AssemblyFileVersionPattern *</td>
     <td>The pattern used for modifying the AssemblyFileVersion located in the AssemblyInfo file</td>
   </tr>
+  tr>
+    <td>AssemblyInformationalVersionPattern *</td>
+    <td>The pattern used for modifying the AssemblyInformationalVersion located in the AssemblyInfo file</td>
+  </tr>
 </table>
 
 
